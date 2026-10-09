@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiden Ahmed · CSE student, manufacturing data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EDF1;--paper:#F5F8FA;--ink:#14213D;--mute:#56657A;--silver:#C5CFD8;--cu:#B4672B;--ok:#2B8A78;--line:#CBD5DD}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cu);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-weight:500;font-size:15px}
+nav .links{display:flex;gap:26px}
+nav a{text-decoration:none;color:var(--mute);transition:color .2s}
+nav a:hover{color:var(--ink)}
+nav b{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;min-height:calc(100vh - 80px);padding-bottom:40px}
+h1{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(54px,8.4vw,112px);line-height:.92;letter-spacing:-.045em}
+h1 span{display:block}
+.lede{margin-top:28px;max-width:30em;font-size:19px;color:var(--mute)}
+.lede b{color:var(--ink);font-weight:500}
+.cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{padding:13px 22px;border-radius:999px;font-weight:500;text-decoration:none;border:1.5px solid var(--ink);transition:transform .2s,background .2s,color .2s}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri:hover{background:var(--cu);border-color:var(--cu)}
+.wafer{position:relative;aspect-ratio:1;width:100%;max-width:540px;justify-self:center}
+canvas{width:100%;height:100%;display:block;cursor:crosshair}
+.read{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);background:var(--ink);color:var(--paper);font:500 13px 'IBM Plex Mono',monospace;padding:8px 14px;border-radius:8px;white-space:nowrap}
+.read i{font-style:normal;color:#7fd8c4}
+.read em{font-style:normal;color:#f0b07a}
+section{padding:96px 0;border-top:1px solid var(--line)}
+h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-.035em;max-width:14em;margin-bottom:44px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden}
+.col{padding:34px 30px;border-right:1px solid var(--line)}
+.col:last-child{border:0}
+.col h3{font-family:'Bricolage Grotesque';font-size:24px;letter-spacing:-.02em;margin-bottom:10px}
+.col p{color:var(--mute);font-size:16px}
+.col .tag{display:inline-block;margin-top:16px;font-size:13px;color:var(--cu);font-weight:500}
+.split{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
+.term{background:var(--ink);border-radius:16px;color:#dfe8f0;font:400 14.5px/1.7 'IBM Plex Mono',monospace;overflow:hidden;box-shadow:0 30px 60px -30px rgba(20,33,61,.5)}
+.term .bar{display:flex;gap:8px;padding:12px 16px;background:#0f1a31}
+.term .bar s{width:11px;height:11px;border-radius:50%;background:#33415f}
+.term .bar s:first-child{background:var(--cu)}
+.out{padding:18px 20px 8px;min-height:230px;white-space:pre-wrap}
+.out .p{color:#7fd8c4}
+.cmds{display:flex;flex-wrap:wrap;gap:8px;padding:6px 20px 20px}
+.cmds button{font:inherit;font-size:13.5px;background:transparent;color:#dfe8f0;border:1px solid #3a4a6c;border-radius:6px;padding:6px 12px;cursor:pointer;transition:background .2s,border-color .2s}
+.cmds button:hover,.cmds button[aria-pressed=true]{background:#24355c;border-color:#7fd8c4}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{padding:8px 16px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-weight:500;font-size:15px}
+.chip.hot{background:var(--cu);color:#fff;border-color:var(--cu)}
+.tl{position:relative;padding-left:34px;max-width:720px}
+.tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--cu),var(--silver))}
+.ev{position:relative;padding-bottom:40px}
+.ev:last-child{padding-bottom:0}
+.ev:before{content:"";position:absolute;left:-34px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--cu)}
+.ev.now:before{background:var(--cu);box-shadow:0 0 0 6px rgba(180,103,43,.2)}
+.ev time{font-size:14px;color:var(--cu);font-weight:500}
+.ev h3{font-family:'Bricolage Grotesque';font-size:24px;letter-spacing:-.02em;margin:2px 0 4px}
+.ev p{color:var(--mute);font-size:16px;max-width:36em}
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px;max-width:900px}
+.cert{padding:20px 22px;border:1px dashed #9aa9b8;border-radius:14px;font-weight:500;line-height:1.35}
+.cert small{display:block;color:var(--mute);font-weight:400;margin-top:4px}
+.end{text-align:left}
+.end a.mail{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(26px,5vw,60px);letter-spacing:-.035em;text-decoration:none;border-bottom:4px solid var(--cu);word-break:break-all;transition:color .2s}
+.end a.mail:hover{color:var(--cu)}
+footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+.rise{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (max-width:860px){
+ .hero{grid-template-columns:1fr;min-height:0;padding-top:24px}
+ .cols,.split,.certs{grid-template-columns:1fr}
+ .col{border-right:0;border-bottom:1px solid var(--line)}
+ nav .links{gap:16px}
+ section{padding:68px 0}
+}
+@media (prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>fiden.</b><div class="links"><a href="#focus">Focus</a><a href="#terminal">Toolkit</a><a href="#path">Path</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero">
+ <div>
+  <h1 class="rise"><span>Fiden</span><span>Ahmed</span></h1>
+  <p class="lede rise" style="animation-delay:.15s">B.Tech CSE student from Assam, building skills in <b>Linux, data analysis and AI</b> to work where chips, machines and data meet: manufacturing and industrial operations.</p>
+  <div class="cta rise" style="animation-delay:.3s"><a class="btn pri" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a></div>
+ </div>
+ <div class="wafer rise" style="animation-delay:.2s">
+  <canvas id="w" aria-label="Interactive silicon wafer map. Move the pointer over dies to inspect them." role="img"></canvas>
+  <div class="read" id="read" aria-live="polite">scanning wafer…</div>
+ </div>
+</header>
+
+<section id="focus">
+ <h2>Where I'm pointing my skills</h2>
+ <div class="cols">
+  <div class="col"><h3>Manufacturing data</h3><p>Production lines produce thousands of small signals. I want to be the person who reads them: finding the drift, the bad batch, the quiet failure before it spreads.</p><span class="tag">Primary target</span></div>
+  <div class="col"><h3>Semiconductor operations</h3><p>Wafers, dies and yield fascinate me. This site's hero is a toy yield map, because that's the kind of problem I'd like to work on.</p><span class="tag">Strongest curiosity</span></div>
+  <div class="col"><h3>Linux, DevOps and cloud</h3><p>The foundation under everything: shells, servers, automation. I'm exploring how modern infrastructure gets built and kept running.</p><span class="tag">Currently exploring</span></div>
+ </div>
+</section>
+
+<section id="terminal">
+ <div class="split">
+  <div>
+   <h2>Toolkit</h2>
+   <p style="color:var(--mute);max-width:26em">Linux, C and Python are my strongest tools. Poke around the terminal to see the rest.</p>
+   <div class="chips"><span class="chip hot">Linux</span><span class="chip hot">C</span><span class="chip hot">Python</span><span class="chip">Data analysis</span><span class="chip">Generative AI</span><span class="chip">Cybersecurity basics</span></div>
+  </div>
+  <div class="term" role="group" aria-label="Interactive terminal">
+   <div class="bar"><s></s><s></s><s></s></div>
+   <div class="out" id="out" aria-live="polite"></div>
+   <div class="cmds" id="cmds"></div>
+  </div>
+ </div>
+</section>
+
+<section id="path">
+ <h2>The path so far</h2>
+ <div class="tl">
+  <div class="ev now"><time>Aug 2025 – 2029</time><h3>B.Tech, Computer Science</h3><p>Dhemaji Engineering College, under Assam Science and Technology University (ASTU).</p></div>
+  <div class="ev"><time>Nov 2023 – Jan 2025 · 1 yr 3 mo</time><h3>Inventory and sales management</h3><p>Ran inventory, sales and daily operations for a family-run retail store and farm. My first hands-on lesson in how a small operation lives or dies by its numbers.</p></div>
+  <div class="ev"><time>Before</time><h3>Higher secondary, Science</h3><p>Govt. Gurdon H.S. School.</p></div>
+ </div>
+ <div class="certs">
+  <div class="cert">Introduction to Cybersecurity<small>Certification</small></div>
+  <div class="cert">Linux Essentials<small>Certification</small></div>
+  <div class="cert">Introduction to Generative AI<small>Certification</small></div>
+ </div>
+</section>
+
+<section id="contact" class="end">
+ <h2>Hiring, collaborating, or just curious?</h2>
+ <a class="mail" href="mailto:fidenahmed19@gmail.com">fidenahmed19@gmail.com</a>
+ <p style="margin-top:26px;color:var(--mute)">Based in Nalbari, Assam, India. Also on <a href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a>.</p>
+</section>
+</div>
+<footer><div class="wrap">© 2026 Fiden Ahmed</div></footer>
+
+<script>
+(function(){
+ var cv=document.getElementById('w'),ctx=cv.getContext('2d'),read=document.getElementById('read');
+ var N=17,dies=[],R=0,S=0,mx=-1,my=-1,t0=null,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ function rnd(a){a=(a+0x6D2B79F5)|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}
+ for(var i=0;i<N;i++)for(var j=0;j<N;j++){
+  var dx=(i-(N-1)/2)/(N/2),dy=(j-(N-1)/2)/(N/2),d=Math.hypot(dx,dy);
+  if(d<0.97){var fail=rnd(i*31+j*17+7)<0.06+Math.pow(d,4)*0.34;dies.push({i:i,j:j,d:d,fail:fail,fx:dx})}
+ }
+ function size(){var r=cv.getBoundingClientRect(),k=window.devicePixelRatio||1;cv.width=r.width*k;cv.height=r.height*k;ctx.setTransform(k,0,0,k,0,0);S=r.width;R=S/2*0.94}
+ function pos(d){var cell=(2*R)/N;return{x:S/2+(d.i-(N-1)/2)*cell,y:S/2+(d.j-(N-1)/2)*cell,c:cell}}
+ function draw(ts){
+  if(t0===null)t0=ts;
+  var p=reduce?1:Math.min(1,(ts-t0)/2600),sweep=-1+p*2.1;
+  ctx.clearRect(0,0,S,S);
+  var g=ctx.createRadialGradient(S/2-R*.3,S/2-R*.3,R*.1,S/2,S/2,R);
+  g.addColorStop(0,'#DCE3E9');g.addColorStop(1,'#B7C3CE');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(S/2,S/2,R*1.0,0,7);ctx.fill();
+  ctx.strokeStyle='#14213D';ctx.lineWidth=2;ctx.stroke();
+  ctx.fillStyle='#E8EDF1';ctx.beginPath();ctx.arc(S/2,S/2+R,R*.07,0,7);ctx.fill();
+  var seen=0,good=0,hover=null;
+  dies.forEach(function(d){
+   var q=pos(d),pad=q.c*.1,w=q.c-pad*2;
+   var on=d.fx<=sweep,x=q.x-w/2,y=q.y-w/2;
+   var near=Math.hypot(mx-q.x,my-q.y);
+   if(near<q.c*.55&&on)hover=d;
+   var lift=on?Math.max(0,1-near/(q.c*3.2)):0;
+   if(!on){ctx.fillStyle='#A9B6C2'}
+   else{seen++;if(!d.fail)good++;ctx.fillStyle=d.fail?'#B4672B':'#2B8A78'}
+   ctx.globalAlpha=on?(.62+lift*.38):.55;
+   var s=w*(1+lift*.18);
+   ctx.fillRect(q.x-s/2,q.y-s/2,s,s);
+   ctx.globalAlpha=1;
+   if(on){ctx.strokeStyle='rgba(20,33,61,.35)';ctx.lineWidth=1;ctx.strokeRect(q.x-s/2+.5,q.y-s/2+.5,s-1,s-1)}
+  });
+  if(p<1){var lx=S/2+sweep*(S/2);ctx.fillStyle='rgba(180,103,43,.9)';ctx.fillRect(lx-1.5,S/2-R,3,R*2)}
+  if(p<1){read.innerHTML='scanning wafer… <i>'+Math.round(p*100)+'%</i>'}
+  else if(hover){read.innerHTML='die ('+hover.i+','+hover.j+') · '+(hover.fail?'<em>FAIL</em>':'<i>PASS</i>')+' · yield '+(good/seen*100).toFixed(1)+'%'}
+  else{read.innerHTML='yield <i>'+(good/seen*100).toFixed(1)+'%</i> · '+seen+' dies · hover to inspect'}
+  requestAnimationFrame(draw);
+ }
+ function mv(e){var r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;mx=t.clientX-r.left;my=t.clientY-r.top}
+ cv.addEventListener('mousemove',mv);cv.addEventListener('touchmove',mv,{passive:true});cv.addEventListener('touchstart',mv,{passive:true});
+ cv.addEventListener('mouseleave',function(){mx=my=-1000});
+ addEventListener('resize',size);size();requestAnimationFrame(draw);
+
+ var out=document.getElementById('out'),cmds=document.getElementById('cmds');
+ var C={
+  whoami:'Fiden Ahmed\nB.Tech CSE, Dhemaji Engineering College (2025–2029)\nNalbari, Assam, India',
+  skills:'linux ........ strong\nc ............ strong\npython ....... strong\ndata analysis  learning\ngenerative ai  learning\ndevops/cloud   exploring',
+  target:'roles:   manufacturing and industrial data\ninterest: semiconductor manufacturing operations\nmode:    learning in public',
+  experience:'2023–2025  inventory and sales management\n          family-run retail store and farm\n          daily operations, stock, customers',
+  contact:'email:    fidenahmed19@gmail.com\nlinkedin: /in/fidenahmed-0071062a2'
+ };
+ var timer;
+ function run(k,btn){
+  clearTimeout(timer);
+  [].forEach.call(cmds.children,function(b){b.setAttribute('aria-pressed',b===btn)});
+  var txt=C[k],n=0;
+  out.innerHTML='<span class="p">fiden@dec:~$</span> '+k+'\n';
+  if(reduce){out.append(txt);return}
+  var span=document.createElement('span');out.appendChild(span);
+  (function step(){n+=3;span.textContent=txt.slice(0,n);if(n<txt.length)timer=setTimeout(step,12)})();
+ }
+ Object.keys(C).forEach(function(k,i){
+  var b=document.createElement('button');b.textContent=k;b.setAttribute('aria-pressed','false');
+  b.onclick=function(){run(k,b)};cmds.appendChild(b);if(i===0)run(k,b);
+ });
+})();
+</script>
+</body>
+</html>
