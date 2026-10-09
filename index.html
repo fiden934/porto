@@ -56,6 +56,14 @@ h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(34px,4.6vw,
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .chip{padding:8px 16px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-weight:500;font-size:15px}
 .chip.hot{background:var(--cu);color:#fff;border-color:var(--cu)}
+.sk{margin-top:30px;display:grid;gap:10px;max-width:430px}
+.sk>div{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;font-weight:500}
+.sk .lv{display:flex;align-items:center;gap:12px}
+.sk small{font-size:14px;color:var(--mute);font-weight:400}
+.sk .good small{color:var(--ok);font-weight:500}
+.dies{display:flex;gap:4px}
+.dies i{width:13px;height:13px;border-radius:2px;background:var(--silver)}
+.dies i.f{background:var(--ok)}
 .tl{position:relative;padding-left:34px;max-width:720px}
 .tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--cu),var(--silver))}
 .ev{position:relative;padding-bottom:40px}
@@ -91,8 +99,8 @@ footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid
 <header class="hero">
  <div>
   <h1 class="rise"><span>Fiden</span><span>Ahmed</span></h1>
-  <p class="lede rise" style="animation-delay:.15s">B.Tech CSE student from Assam, building skills in <b>Linux, data analysis and AI</b> to work where chips, machines and data meet: manufacturing and industrial operations.</p>
-  <div class="cta rise" style="animation-delay:.3s"><a class="btn pri" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a></div>
+  <p class="lede rise" style="animation-delay:.15s">B.Tech CSE student from Assam, good with <b>Linux, C and Python</b> and exploring data analysis, with an eye on where chips, machines and data meet: manufacturing and industrial operations.</p>
+  <div class="cta rise" style="animation-delay:.3s"><a class="btn pri" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://github.com/fiden934" target="_blank" rel="noopener">GitHub</a></div>
  </div>
  <div class="wafer rise" style="animation-delay:.2s">
   <canvas id="w" aria-label="Interactive silicon wafer map. Move the pointer over dies to inspect them." role="img"></canvas>
@@ -105,7 +113,7 @@ footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid
  <div class="cols">
   <div class="col"><h3>Manufacturing data</h3><p>Production lines produce thousands of small signals. I want to be the person who reads them: finding the drift, the bad batch, the quiet failure before it spreads.</p><span class="tag">Primary target</span></div>
   <div class="col"><h3>Semiconductor operations</h3><p>Wafers, dies and yield fascinate me. This site's hero is a toy yield map, because that's the kind of problem I'd like to work on.</p><span class="tag">Strongest curiosity</span></div>
-  <div class="col"><h3>Linux, DevOps and cloud</h3><p>The foundation under everything: shells, servers, automation. I'm exploring how modern infrastructure gets built and kept running.</p><span class="tag">Currently exploring</span></div>
+  <div class="col"><h3>Linux, DevOps and cloud</h3><p>Linux is the foundation under everything: shells, servers, automation. Now I'm learning how modern infrastructure gets built and kept running.</p><span class="tag">Learning DevOps</span></div>
  </div>
 </section>
 
@@ -113,8 +121,15 @@ footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid
  <div class="split">
   <div>
    <h2>Toolkit</h2>
-   <p style="color:var(--mute);max-width:26em">Linux, C and Python are my strongest tools. Poke around the terminal to see the rest.</p>
-   <div class="chips"><span class="chip hot">Linux</span><span class="chip hot">C</span><span class="chip hot">Python</span><span class="chip">Data analysis</span><span class="chip">Generative AI</span><span class="chip">Cybersecurity basics</span></div>
+   <p style="color:var(--mute);max-width:26em">Linux, C and Python are where I'm most comfortable. The rest I'm still building. Each green die below is a level; try the terminal too.</p>
+   <div class="sk">
+    <div class="good"><span>Linux</span><span class="lv"><small>Good</small><span class="dies"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></span></div>
+    <div class="good"><span>C</span><span class="lv"><small>Good</small><span class="dies"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></span></div>
+    <div class="good"><span>Python</span><span class="lv"><small>Good</small><span class="dies"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></span></div>
+    <div><span>Data analysis</span><span class="lv"><small>Exploring</small><span class="dies"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></span></div>
+    <div><span>Generative AI</span><span class="lv"><small>Learning</small><span class="dies"><i class="f"></i><i></i><i></i><i></i><i></i></span></span></div>
+    <div><span>DevOps and cloud</span><span class="lv"><small>Learning</small><span class="dies"><i class="f"></i><i></i><i></i><i></i><i></i></span></span></div>
+   </div>
   </div>
   <div class="term" role="group" aria-label="Interactive terminal">
    <div class="bar"><s></s><s></s><s></s></div>
@@ -141,7 +156,7 @@ footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid
 <section id="contact" class="end">
  <h2>Hiring, collaborating, or just curious?</h2>
  <a class="mail" href="mailto:fidenahmed19@gmail.com">fidenahmed19@gmail.com</a>
- <p style="margin-top:26px;color:var(--mute)">Based in Nalbari, Assam, India. Also on <a href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a>.</p>
+ <p style="margin-top:26px;color:var(--mute)">Based in Nalbari, Assam, India. Also on <a href="https://www.linkedin.com/in/fidenahmed-0071062a2" target="_blank" rel="noopener">LinkedIn</a> and <a href="https://github.com/fiden934" target="_blank" rel="noopener">GitHub</a>.</p>
 </section>
 </div>
 <footer><div class="wrap">© 2026 Fiden Ahmed</div></footer>
@@ -195,10 +210,10 @@ footer{padding:28px 0 44px;color:var(--mute);font-size:14px;border-top:1px solid
  var out=document.getElementById('out'),cmds=document.getElementById('cmds');
  var C={
   whoami:'Fiden Ahmed\nB.Tech CSE, Dhemaji Engineering College (2025–2029)\nNalbari, Assam, India',
-  skills:'linux ........ strong\nc ............ strong\npython ....... strong\ndata analysis  learning\ngenerative ai  learning\ndevops/cloud   exploring',
-  target:'roles:   manufacturing and industrial data\ninterest: semiconductor manufacturing operations\nmode:    learning in public',
+  skills:'linux ........ good\nc ............ good\npython ....... good\ndata analysis  exploring\ngenerative ai  learning\ndevops/cloud   learning',
+  target:'roles:    manufacturing and industrial data\ninterest: semiconductor manufacturing operations\nstatus:   still learning',
   experience:'2023–2025  inventory and sales management\n          family-run retail store and farm\n          daily operations, stock, customers',
-  contact:'email:    fidenahmed19@gmail.com\nlinkedin: /in/fidenahmed-0071062a2'
+  contact:'email:    fidenahmed19@gmail.com\nlinkedin: /in/fidenahmed-0071062a2\ngithub:   github.com/fiden934'
  };
  var timer;
  function run(k,btn){
